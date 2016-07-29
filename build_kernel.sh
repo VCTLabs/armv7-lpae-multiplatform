@@ -21,7 +21,8 @@
 # THE SOFTWARE.
 
 DIR=$PWD
-CORES=$(getconf _NPROCESSORS_ONLN)
+#CORES=$(getconf _NPROCESSORS_ONLN)
+CORES="2"
 
 mkdir -p "${DIR}/deploy/"
 
