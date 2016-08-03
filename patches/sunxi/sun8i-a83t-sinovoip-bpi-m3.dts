@@ -78,11 +78,11 @@
 			<&ccu CLK_PLL_GPU>,
 			<&ccu CLK_PLL_HSIC>,
 			<&ccu CLK_PLL_VIDEO1>;
-	assigned-clock-rates =	<1200000000>,	// pll_periph
+	assigned-clock-rates =	<600000000>,	// pll_periph
 				<432000000>,	// pll_ve
 				<432000000>,	// pll_gpu
 				<480000000>,	// pll_hsic
-				<297000000>;	// pll_video1
+				<118800000>;	// pll_video1
 };
 
 &ehci0 {
@@ -152,6 +152,10 @@
 };
 
 &r_rsb {
+	status = "okay";
+};
+
+&ir {
 	status = "okay";
 };
 
