@@ -63,38 +63,41 @@
 			device_type = "cpu";
 			reg = <0>;
 			clocks = <&cpus>;
-			clock-latency = <244144>; /* 8 32k periods */
-			operating-points = <
+//			clock-latency = <244144>; /* 8 32k periods */
+//			operating-points = <
 				/* kHz    uV */
-				1200000 1400000
-				1008000 1400000
-				912000	1400000
-				864000  1350000
-				720000  1250000
-				528000  1150000
-				432000	1100000
-				>;
-			#cooling-cells = <2>;
-			cooling-min-level = <0>;
-			cooling-max-level = <3>;
+//				1200000 1400000
+//				1008000 1400000
+//				912000	1400000
+//				864000  1350000
+//				720000  1250000
+//				528000  1150000
+//				432000	1100000
+//				>;
+//			#cooling-cells = <2>;
+//			cooling-min-level = <0>;
+//			cooling-max-level = <3>;
 		};
 
 		cpu1: cpu@1 {
 			compatible = "arm,cortex-a7";
 			device_type = "cpu";
 			reg = <1>;
+			clocks = <&cpus>;
 		};
 
 		cpu2: cpu@2 {
 			compatible = "arm,cortex-a7";
 			device_type = "cpu";
 			reg = <2>;
+			clocks = <&cpus>;
 		};
 
 		cpu3: cpu@3 {
 			compatible = "arm,cortex-a7";
 			device_type = "cpu";
 			reg = <3>;
+			clocks = <&cpus>;
 		};
 
 		cpu4: cpu@100 {
@@ -102,38 +105,41 @@
 			device_type = "cpu";
 			reg = <0x100>;
 			clocks = <&cpus>;
-			clock-latency = <244144>; /* 8 32k periods */
-			operating-points = <
-				/* kHz    uV */
-				1200000 1400000
-				1008000 1400000
-				912000	1400000
-				864000  1350000
-				720000  1250000
-				528000  1150000
-				432000	1100000
-				>;
-			#cooling-cells = <2>;
-			cooling-min-level = <0>;
-			cooling-max-level = <3>;
+//			clock-latency = <244144>; /* 8 32k periods */
+//			operating-points = <
+//				/* kHz    uV */
+//				1200000 1400000
+//				1008000 1400000
+//				912000	1400000
+//				864000  1350000
+//				720000  1250000
+//				528000  1150000
+//				432000	1100000
+//				>;
+//			#cooling-cells = <2>;
+//			cooling-min-level = <0>;
+//			cooling-max-level = <3>;
 		};
 
 		cpu5: cpu@101 {
 			compatible = "arm,cortex-a7";
 			device_type = "cpu";
 			reg = <0x101>;
+			clocks = <&cpus>;
 		};
 
 		cpu6: cpu@102 {
 			compatible = "arm,cortex-a7";
 			device_type = "cpu";
 			reg = <0x102>;
+			clocks = <&cpus>;
 		};
 
 		cpu7: cpu@103 {
 			compatible = "arm,cortex-a7";
 			device_type = "cpu";
 			reg = <0x103>;
+			clocks = <&cpus>;
 		};
 	};
 
