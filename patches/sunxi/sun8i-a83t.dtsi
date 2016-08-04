@@ -63,20 +63,20 @@
 			device_type = "cpu";
 			reg = <0>;
 			clocks = <&cpus>;
-//			clock-latency = <244144>; /* 8 32k periods */
-//			operating-points = <
+			clock-latency = <244144>; /* 8 32k periods */
+			operating-points = <
 				/* kHz    uV */
-//				1200000 1400000
-//				1008000 1400000
-//				912000	1400000
-//				864000  1350000
-//				720000  1250000
-//				528000  1150000
-//				432000	1100000
-//				>;
-//			#cooling-cells = <2>;
-//			cooling-min-level = <0>;
-//			cooling-max-level = <3>;
+				1200000 1400000
+				1008000 1400000
+				912000	1400000
+				864000  1350000
+				720000  1250000
+				528000  1150000
+				432000	1100000
+				>;
+			#cooling-cells = <2>;
+			cooling-min-level = <0>;
+			cooling-max-level = <3>;
 		};
 
 		cpu1: cpu@1 {
@@ -105,20 +105,20 @@
 			device_type = "cpu";
 			reg = <0x100>;
 			clocks = <&cpus>;
-//			clock-latency = <244144>; /* 8 32k periods */
-//			operating-points = <
-//				/* kHz    uV */
-//				1200000 1400000
-//				1008000 1400000
-//				912000	1400000
-//				864000  1350000
-//				720000  1250000
-//				528000  1150000
-//				432000	1100000
-//				>;
-//			#cooling-cells = <2>;
-//			cooling-min-level = <0>;
-//			cooling-max-level = <3>;
+			clock-latency = <244144>; /* 8 32k periods */
+			operating-points = <
+				/* kHz    uV */
+				1200000 1400000
+				1008000 1400000
+				912000	1400000
+				864000  1350000
+				720000  1250000
+				528000  1150000
+				432000	1100000
+				>;
+			#cooling-cells = <2>;
+			cooling-min-level = <0>;
+			cooling-max-level = <3>;
 		};
 
 		cpu5: cpu@101 {
@@ -425,7 +425,7 @@
 			reg = <0x01c20000 0x400>;
 			clocks = <&osc24M>, <&osc32k>;
 			clock-names = "hosc", "losc";
-			// specific clock rates set in bpi-m3.dts
+			// specific clock rates set in child dts
 			#clock-cells = <1>;
 			#reset-cells = <1>;
 		};
@@ -505,15 +505,15 @@
 			clocks = <&osc24M>;
 		};
 
-		watchdog@01c20ca0 {
+		wdt0: watchdog@01c20c00 {
 			compatible = "allwinner,sun6i-a31-wdt";
-			reg = <0x01c20ca0 0x20>;
+			reg = <0x01c20c00 0x20>;
 			interrupts = <GIC_SPI 25 IRQ_TYPE_LEVEL_HIGH>;
 		};
 
 		i2s2: i2s@1c22800 {
 			compatible = "allwinner,sun8i-h3-hdmi-audio";
-			reg = <0x01c22800 0x60>;
+			reg = <0x01c22800 0x400>;
 			clocks = <&ccu CLK_PLL_AUDIO>, <&ccu CLK_DAUDIO2>;
 			clock-names = "clock", "i2s2";
 //			resets = <&ccu RST_DAUDIO2>;
@@ -599,7 +599,7 @@
 
 		ir: ir@01f02000 {
 			compatible = "allwinner,sun5i-a13-ir";
-			reg = <0x01f02000 0x40>;
+			reg = <0x01f02000 0x400>;
 			interrupts = <GIC_SPI 37 IRQ_TYPE_LEVEL_HIGH>;
 			clocks = <&apb0_gates 1>, <&ir_clk>;
 			clock-names = "apb", "ir";
