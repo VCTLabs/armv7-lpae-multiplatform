@@ -190,6 +190,11 @@ rt () {
 	${git} "${DIR}/patches/rt/0001-merge-CONFIG_PREEMPT_RT-Patch-Set.patch"
 }
 
+swconfig () {
+	echo "dir: swconfig"
+	${git} "${DIR}/0001-net-phy-add-Generic-Netlink-Ethernet-switch-configur.patch"
+}
+
 local_patch () {
 	echo "dir: dir"
 	${git} "${DIR}/patches/dir/0001-patch.patch"
@@ -198,6 +203,7 @@ local_patch () {
 #external_git
 #aufs4
 #rt
+swconfig
 #local_patch
 
 reverts () {
