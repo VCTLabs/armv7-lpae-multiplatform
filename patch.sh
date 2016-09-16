@@ -328,6 +328,82 @@ quieter () {
 	fi
 }
 
+sunxi () {
+	echo "dir: more_fixes"
+	#regenerate="enable"
+	if [ "x${regenerate}" = "xenable" ] ; then
+		start_cleanup
+	fi
+
+	${git} "${DIR}/patches/sunxi/0001-ethernet-add-sun8i-emac-driver.patch"
+	${git} "${DIR}/patches/sunxi/0002-MAINTAINERS-Add-myself-as-maintainers-of-sun8i-emac.patch"
+	${git} "${DIR}/patches/sunxi/0003-ARM-sun8i-dt-Add-DT-bindings-documentation-for-Allwi.patch"
+	${git} "${DIR}/patches/sunxi/0004-ARM-dts-sun8i-h3-add-sun8i-emac-ethernet-driver.patch"
+	${git} "${DIR}/patches/sunxi/0005-ARM-dts-sun8i-Enable-sun8i-emac-on-the-Orange-PI-PC.patch"
+	${git} "${DIR}/patches/sunxi/0006-ARM-dts-sun8i-Enable-sun8i-emac-on-the-Orange-PI-One.patch"
+	${git} "${DIR}/patches/sunxi/0007-ARM-dts-sun8i-Add-ethernet0-alias-for-h3-emac.patch"
+
+	if [ "x${regenerate}" = "xenable" ] ; then
+		number=1
+		cleanup
+	fi
+}
+
+gentoo () {
+	echo "dir: more_fixes"
+	#regenerate="enable"
+	if [ "x${regenerate}" = "xenable" ] ; then
+		start_cleanup
+	fi
+
+	${git} "${DIR}/patches/gentoo/1500_XATTR_USER_PREFIX.patch"
+	${git} "${DIR}/patches/gentoo/1510_fs-enable-link-security-restrictions-by-default.patch"
+	${git} "${DIR}/patches/gentoo/2900_dev-root-proc-mount-fix.patch"
+	${git} "${DIR}/patches/gentoo/4200_fbcondecor-3.19.patch"
+	${git} "${DIR}/patches/gentoo/4400_alpha-sysctl-uac.patch"
+	${git} "${DIR}/patches/gentoo/4567_distro-Gentoo-Kconfig.patch"
+
+	if [ "x${regenerate}" = "xenable" ] ; then
+		number=1
+		cleanup
+	fi
+}
+
+pine64 () {
+	echo "dir: more_fixes"
+	#regenerate="enable"
+	if [ "x${regenerate}" = "xenable" ] ; then
+		start_cleanup
+	fi
+
+	${git} "${DIR}/patches/pine64/v2-1-4-clk-sunxi-ng-Add-A64-clocks.patch"
+	${git} "${DIR}/patches/pine64/v2-2-4-Documentation-devicetree-add-vendor-prefix-for-Pine64.patch"
+	${git} "${DIR}/patches/pine64/v2-3-4-arm64-dts-add-Allwinner-A64-SoC-.dtsi.patch"
+	${git} "${DIR}/patches/pine64/v2-4-4-arm64-dts-add-Pine64-support.patch"
+
+	if [ "x${regenerate}" = "xenable" ] ; then
+		number=1
+		cleanup
+	fi
+}
+
+chip () {
+	echo "dir: more_fixes"
+	#regenerate="enable"
+	if [ "x${regenerate}" = "xenable" ] ; then
+		start_cleanup
+	fi
+
+	${git} "${DIR}/patches/chip/v3-1-3-ARM-sunxi-Support-the-Nextthing-GR8.patch"
+	${git} "${DIR}/patches/chip/v3-2-3-ARM-dts-Add-NextThing-GR8-dtsi.patch"
+	${git} "${DIR}/patches/chip/v3-3-3-ARM-dts-gr8-Add-support-for-the-GR8-evaluation-board.patch"
+
+	if [ "x${regenerate}" = "xenable" ] ; then
+		number=1
+		cleanup
+	fi
+}
+
 more_fixes () {
 	echo "dir: more_fixes"
 	#regenerate="enable"
@@ -364,6 +440,10 @@ reverts
 #fixes
 ti
 quieter
+sunxi
+gentoo
+#pine64
+#chip
 more_fixes
 exynos
 
