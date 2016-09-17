@@ -342,6 +342,7 @@ sunxi () {
 	${git} "${DIR}/patches/sunxi/0005-ARM-dts-sun8i-Enable-sun8i-emac-on-the-Orange-PI-PC.patch"
 	${git} "${DIR}/patches/sunxi/0006-ARM-dts-sun8i-Enable-sun8i-emac-on-the-Orange-PI-One.patch"
 	${git} "${DIR}/patches/sunxi/0007-ARM-dts-sun8i-Add-ethernet0-alias-for-h3-emac.patch"
+	${git} "${DIR}/patches/sunxi/0001-ARM-dts-sunxi-add-support-for-BananaPi-BPi-R1.patch"
 
 	if [ "x${regenerate}" = "xenable" ] ; then
 		number=1
@@ -441,7 +442,7 @@ reverts
 ti
 quieter
 sunxi
-gentoo
+#gentoo
 #pine64
 #chip
 more_fixes
