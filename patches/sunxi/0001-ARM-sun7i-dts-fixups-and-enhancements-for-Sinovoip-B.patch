@@ -1,0 +1,119 @@
+From 874020c1239c0fa7aaf0d9073dc38b5c36586ace Mon Sep 17 00:00:00 2001
+From: Stephen Arnold <sarnold@vctlabs.com>
+Date: Sun, 18 Sep 2016 22:33:22 -0700
+Subject: [PATCH] ARM: sun7i: dts: fixups and enhancements for Sinovoip BPI-R1
+
+* add supply reg, tune cpu voltages and regulators
+* add i2c4 on RPi headers, enable uart3
+* add vbus detect pin to usb phy
+
+Signed-off-by: Stephen Arnold <nerdboy@gentoo.org>
+---
+ arch/arm/boot/dts/sun7i-a20-bananapi-r1.dts | 36 +++++++++++++++++++++++++----
+ arch/arm/boot/dts/sun7i-a20.dtsi            |  7 ++++++
+ 2 files changed, 39 insertions(+), 4 deletions(-)
+
+diff --git a/arch/arm/boot/dts/sun7i-a20-bananapi-r1.dts b/arch/arm/boot/dts/sun7i-a20-bananapi-r1.dts
+index 87f8243..d2757be 100644
+--- a/arch/arm/boot/dts/sun7i-a20-bananapi-r1.dts
++++ b/arch/arm/boot/dts/sun7i-a20-bananapi-r1.dts
+@@ -56,7 +56,8 @@
+ 	aliases {
+ 		serial0 = &uart0;
+ 		serial1 = &uart2;
+-		serial2 = &uart7;
++		serial2 = &uart3;
++		serial3 = &uart7;
+ 	};
+ 
+ 	chosen {
+@@ -114,6 +115,17 @@
+ 
+ &cpu0 {
+ 	cpu-supply = <&reg_dcdc2>;
++	operating-points = <
++		/* kHz    uV */
++		960000  1400000
++		912000  1400000
++		864000  1350000
++		720000  1250000
++		528000  1150000
++		312000  1100000
++		144000  1050000
++		>;
++	cooling-max-level = <6>;
+ };
+ 
+ &ehci0 {
+@@ -205,6 +217,14 @@
+ 		reg = <0x34>;
+ 		interrupt-parent = <&nmi_intc>;
+ 		interrupts = <0 IRQ_TYPE_LEVEL_LOW>;
++		interrupt-controller;
++		#interrupt-cells = <1>;
++
++		acin-supply = <&reg_axp_ipsout>;
++		vin2-supply = <&reg_axp_ipsout>;
++		vin3-supply = <&reg_axp_ipsout>;
++		ldo24in-supply = <&reg_axp_ipsout>;
++		ldo3in-supply = <&reg_axp_ipsout>;
+ 	};
+ };
+ 
+@@ -214,6 +234,13 @@
+ 	status = "okay";
+ };
+ 
++&i2c4 {
++	/* this one goes on the Pi-style header */
++	pinctrl-names = "default";
++	pinctrl-0 = <&i2c4_pins_a>;
++	status = "okay";
++};
++
+ &ir0 {
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&ir0_rx_pins_a>;
+@@ -325,8 +352,8 @@
+ 
+ &reg_dcdc2 {
+ 	regulator-always-on;
+-	regulator-min-microvolt = <1250000>;
+-	regulator-max-microvolt = <1600000>;
++	regulator-min-microvolt = <1050000>;
++	regulator-max-microvolt = <1450000>;
+ 	regulator-name = "vdd-cpu";
+ };
+ 
+@@ -398,8 +425,9 @@
+ 
+ &usbphy {
+ 	pinctrl-names = "default";
+-	pinctrl-0 = <&usb0_id_detect_pin>;
++	pinctrl-0 = <&usb0_id_detect_pin>, <&usb0_vbus_detect_pin>;
+ 	usb0_id_det-gpio = <&pio 7 4 GPIO_ACTIVE_HIGH>; /* PH4 */
++	usb0_vbus_det-gpio = <&pio 7 5 GPIO_ACTIVE_HIGH>; /* PH5 */
+ 	usb0_vbus-supply = <&reg_usb0_vbus>;
+ 	usb1_vbus-supply = <&reg_usb1_vbus>;
+ 	usb2_vbus-supply = <&reg_usb2_vbus>;
+diff --git a/arch/arm/boot/dts/sun7i-a20.dtsi b/arch/arm/boot/dts/sun7i-a20.dtsi
+index bd0c476..4b5bc6d 100644
+--- a/arch/arm/boot/dts/sun7i-a20.dtsi
++++ b/arch/arm/boot/dts/sun7i-a20.dtsi
+@@ -1170,6 +1170,13 @@
+ 				allwinner,pull = <SUN4I_PINCTRL_NO_PULL>;
+ 			};
+ 
++			i2c4_pins_a: i2c4@0 {
++				allwinner,pins = "PI2", "PI3";
++				allwinner,function = "i2c4";
++				allwinner,drive = <SUN4I_PINCTRL_10_MA>;
++				allwinner,pull = <SUN4I_PINCTRL_NO_PULL>;
++			};
++
+ 			ir0_rx_pins_a: ir0@0 {
+ 				    allwinner,pins = "PB4";
+ 				    allwinner,function = "ir0";
+-- 
+2.10.0
+
