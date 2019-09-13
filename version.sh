@@ -4,7 +4,7 @@ ARCH=$(uname -m)
 
 config="multi_v7_defconfig"
 
-build_prefix="-armv7-lpae-x"
+build_prefix="-chr"
 branch_prefix="v"
 branch_postfix=".x"
 
@@ -35,7 +35,7 @@ KERNEL_REL=5.3
 KERNEL_TAG=${KERNEL_REL}-rc8
 kernel_rt=".X-rtY"
 #Kernel Build
-BUILD=${build_prefix}7
+BUILD=${build_prefix}0
 
 #v5.X-rcX + upto SHA
 #prev_KERNEL_SHA=""
